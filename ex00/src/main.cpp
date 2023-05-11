@@ -1,5 +1,14 @@
+#include <deque>
 #include <iomanip>
 #include <iostream>
+#include <list>
+#include <vector>
+
+#include "easyfind.hpp"
+/*
+#include <array>
+#include <forward_list>
+*/
 
 #define RESET "\033[m"
 #define GREEN "\033[0;32m"
@@ -34,11 +43,79 @@ void printSubtitle(std::string const& subtitle) {
   std::cout << RESET << std::setfill(' ') << std::setw(0);
 }
 
-void test_from_subject() {
-  printTitle("Test from sunject pdf");
+template <typename Container>
+std::ostream& easyprint(std::ostream& os, Container const& container) {
+  os << "{ ";
+  for (typename Container::const_iterator it = container.begin();
+       it != container.end(); ++it) {
+    if (it != container.begin()) os << ", ";
+    os << *it;
+  }
+  os << " }" << std::endl;
+  return os;
+}
+
+template <typename E>
+std::ostream& operator<<(std::ostream& os, std::vector<E> const& v) {
+  return easyprint(os, v);
+}
+
+template <typename E>
+std::ostream& operator<<(std::ostream& os, std::list<E> const& v) {
+  return easyprint(os, v);
+}
+
+template <typename E>
+std::ostream& operator<<(std::ostream& os, std::deque<E> const& v) {
+  return easyprint(os, v);
+}
+
+template <typename Container>
+void test_easy_find() {
+  Container c;
+  c.push_back(0);
+  c.push_back(1);
+  c.push_back(4);
+  c.push_back(7);
+  printSubtitle("Container") ;
+  std::cout << c << std::endl;
+  for (int i = 0; i < 10; i++) {
+    std::cout << i << ": ";
+    if (easyfind(c, i) == c.end())
+      std::cout << "N/A" << std::endl;
+    else
+      std::cout << "FOUND" << std::endl;
+  }
+  printSubtitle("const Container") ;
+  Container const_c(c) ;
+  std::cout << const_c << std::endl;
+  for (int i = 0; i < 10; i++) {
+    std::cout << i << ": ";
+    if (easyfind(const_c, i) == const_c.end())
+      std::cout << "N/A" << std::endl;
+    else
+      std::cout << "FOUND" << std::endl;
+  }
+}
+
+void test_list() {
+  printTitle("Test easyfind on std::list<int>");
+  test_easy_find<std::list<int> >();
+}
+
+void test_vector() {
+  printTitle("Test easyfind on std::vector<int>");
+  test_easy_find<std::vector<int> >();
+}
+
+void test_deque() {
+  printTitle("Test easyfind on std::deque<int>");
+  test_easy_find<std::deque<int> >();
 }
 
 int main(void) {
-  test_from_subject();
+  test_vector();
+  test_list();
+  test_deque();
   return 0;
 }
