@@ -77,7 +77,7 @@ void test_easy_find() {
   c.push_back(1);
   c.push_back(4);
   c.push_back(7);
-  printSubtitle("Container") ;
+  printSubtitle("Container");
   std::cout << c << std::endl;
   for (int i = 0; i < 10; i++) {
     std::cout << i << ": ";
@@ -86,8 +86,8 @@ void test_easy_find() {
     else
       std::cout << "FOUND" << std::endl;
   }
-  printSubtitle("const Container") ;
-  Container const_c(c) ;
+  printSubtitle("const Container");
+  Container const_c(c);
   std::cout << const_c << std::endl;
   for (int i = 0; i < 10; i++) {
     std::cout << i << ": ";
