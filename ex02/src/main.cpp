@@ -1,5 +1,9 @@
 #include <iomanip>
 #include <iostream>
+#include <list>
+#include <stack>
+
+#include "MutantStack.hpp"
 
 #define RESET "\033[m"
 #define GREEN "\033[0;32m"
@@ -35,10 +39,55 @@ void printSubtitle(std::string const& subtitle) {
 }
 
 void test_from_subject() {
-  printTitle("Test from sunject pdf");
+  printTitle("Test with MutantStack from sunject pdf");
+  MutantStack<int> mstack;
+  mstack.push(5);
+  mstack.push(17);
+  std::cout << mstack.top() << std::endl;
+  mstack.pop();
+  std::cout << mstack.size() << std::endl;
+  mstack.push(3);
+  mstack.push(5);
+  mstack.push(737);
+  //[...]
+  mstack.push(0);
+  MutantStack<int>::iterator it = mstack.begin();
+  MutantStack<int>::iterator ite = mstack.end();
+  ++it;
+  --it;
+  while (it != ite) {
+    std::cout << *it << std::endl;
+    ++it;
+  }
+  std::stack<int> s(mstack);
+}
+
+void test_with_list() {
+  printTitle("Test with std::list");
+  std::list<int> list;
+  list.push_back(5);
+  list.push_back(17);
+  std::cout << list.back() << std::endl;
+  list.pop_back();
+  std::cout << list.size() << std::endl;
+  list.push_back(3);
+  list.push_back(5);
+  list.push_back(737);
+  //[...]
+  list.push_back(0);
+  std::list<int>::iterator it = list.begin();
+  std::list<int>::iterator ite = list.end();
+  ++it;
+  --it;
+  while (it != ite) {
+    std::cout << *it << std::endl;
+    ++it;
+  }
+  std::stack<int, std::list<int> > s(list);
 }
 
 int main(void) {
   test_from_subject();
+  test_with_list();
   return 0;
 }

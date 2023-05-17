@@ -5,7 +5,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCDIR	= src
 SRCS	= $(wildcard $(SRCDIR)/*.cpp)
-INCLUDES	= $(wildcard $(SRCDIR)/*.hpp)
+INCLUDES	= $(wildcard $(SRCDIR)/*.hpp $(SRCDIR)/*.tpp)
 OBJDIR	= obj
 OBJS	= $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
