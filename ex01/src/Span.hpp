@@ -15,10 +15,9 @@ class Span {
   void addNumber(int n);
   int shortestSpan();
   int longestSpan();
-  template <typename Container>
-  void addNumberRange(typename Container::const_iterator start,
-                      typename Container::const_iterator last) {
-    for (typename Container::const_iterator it = start; it != last; ++it)
+  template <typename InputIterator>
+  void addNumberRange(InputIterator first, InputIterator last) {
+    for (InputIterator it = first; it != last; ++it)
       addNumber(*it);
   }
 
