@@ -86,7 +86,59 @@ void test_with_list() {
   std::stack<int, std::list<int> > s(list);
 }
 
+void test_all_methods() {
+  printTitle("Test all methods with MutantStack");
+  MutantStack<int> mstack;
+  mstack.push(5);
+  mstack.push(17);
+  mstack.pop();
+  mstack.push(3);
+  mstack.push(5);
+  mstack.push(737);
+  //[...]
+  mstack.push(0);
+
+  printSubtitle("Test iterator");
+  MutantStack<int>::iterator it = mstack.begin();
+  MutantStack<int>::iterator ite = mstack.end();
+  ++it;
+  --it;
+  while (it != ite) {
+    std::cout << *it << std::endl;
+    ++it;
+  }
+
+  printSubtitle("Test const_iterator");
+  MutantStack<int>::const_iterator cit = mstack.begin();
+  MutantStack<int>::const_iterator cite = mstack.end();
+  ++cit;
+  --cit;
+  while (cit != cite) {
+    std::cout << *cit << std::endl;
+    ++cit;
+  }
+  printSubtitle("Test reverse iterator");
+  MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+  MutantStack<int>::reverse_iterator rite = mstack.rend();
+  ++rit;
+  --rit;
+  while (rit != rite) {
+    std::cout << *rit << std::endl;
+    ++rit;
+  }
+  printSubtitle("Test const reverse iterator");
+  MutantStack<int>::const_reverse_iterator crit = mstack.rbegin();
+  MutantStack<int>::const_reverse_iterator crite = mstack.rend();
+  ++crit;
+  --crit;
+  while (crit != crite) {
+    std::cout << *crit << std::endl;
+    ++crit;
+  }
+}
+
 int main(void) {
+  test_all_methods();
   test_from_subject();
   test_with_list();
   return 0;

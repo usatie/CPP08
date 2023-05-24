@@ -15,6 +15,8 @@ class MutantStack: public std::stack<T, Container> {
   typedef typename Container::const_reference const_reference;
   typedef typename Container::iterator iterator;
   typedef typename Container::const_iterator const_iterator;
+  typedef typename Container::reverse_iterator reverse_iterator;
+  typedef typename Container::const_reverse_iterator const_reverse_iterator;
 
   // Implicit conversion to Container
   //operator Container() const { return this->c; }
@@ -28,12 +30,12 @@ class MutantStack: public std::stack<T, Container> {
   const_iterator end() const;
 
   // rbegin
-  iterator rbegin();
-  const_iterator rbegin() const;
+  reverse_iterator rbegin();
+  const_reverse_iterator rbegin() const;
 
   // rend
-  iterator rend();
-  const_iterator rend() const;
+  reverse_iterator rend();
+  const_reverse_iterator rend() const;
 };
 
 #include "MutantStack.tpp"

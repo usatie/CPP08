@@ -25,25 +25,25 @@ MutantStack<T, Container>::end() const {
 
 // rbegin
 template <class T, class Container>
-typename MutantStack<T, Container>::iterator
+typename MutantStack<T, Container>::reverse_iterator
 MutantStack<T, Container>::rbegin() {
   return this->c.rbegin();
 }
 
 template <class T, class Container>
-typename MutantStack<T, Container>::const_iterator
+typename MutantStack<T, Container>::const_reverse_iterator
 MutantStack<T, Container>::rbegin() const {
   return this->c.rbegin();
 }
 
 // rend
 template <class T, class Container>
-typename MutantStack<T, Container>::iterator MutantStack<T, Container>::rend() {
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rend() {
   return this->c.rend();
 }
 
 template <class T, class Container>
-typename MutantStack<T, Container>::const_iterator
+typename MutantStack<T, Container>::const_reverse_iterator
 MutantStack<T, Container>::rend() const {
   return this->c.rend();
 }
