@@ -2,12 +2,10 @@
 #define MUTANTSTACK_HPP
 
 #include <deque>
+#include <stack>
 
 template <class T, class Container = std::deque<T> >
-class MutantStack {
- private:
-  Container c;
-
+class MutantStack: public std::stack<T, Container> {
  public:
   // Member types
   typedef Container container_type;
@@ -19,32 +17,7 @@ class MutantStack {
   typedef typename Container::const_iterator const_iterator;
 
   // Implicit conversion to Container
-  operator Container() const { return c; }
-
-  // Copy Constructor
-  MutantStack(const MutantStack& other);
-  // Destructor (without virtual, thus MutantStack should not be inherited)
-  ~MutantStack();
-  // Default constructor and constructor
-  explicit MutantStack(const Container& cont = Container());
-  // Copy assignment operator
-  MutantStack& operator=(const MutantStack& other);
-
-  // top
-  reference top();
-  const_reference top() const;
-
-  // empty
-  bool empty() const;
-
-  // size
-  size_type size() const;
-
-  // push
-  void push(const_reference value);
-
-  // pop
-  void pop();
+  //operator Container() const { return this->c; }
 
   // begin
   iterator begin();
@@ -62,9 +35,6 @@ class MutantStack {
   iterator rend();
   const_iterator rend() const;
 };
-
-template <class T, class Container>
-void swap(MutantStack<T, Container>& a, MutantStack<T, Container>& b);
 
 #include "MutantStack.tpp"
 
